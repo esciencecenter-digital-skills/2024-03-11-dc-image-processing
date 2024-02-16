@@ -1,2 +1,2 @@
-venue,address,country,latitude,longitude,humandate,humantime,startdate,enddate,instructor,helper,carpentry,curriculum,title,slug,flavor
-eScience Center,"Science Park 140, 1098 XG Amsterdam",Netherlands,52.35695685,4.95433748205789,"December 24 - 26, 2021, CET",7:00 - 9:00,2021-12-24T00:00:00Z,2021-12-26T00:00:00Z,"Johan Hidding, Lieke de Boer, Mateusz Kuzak","Pushpanjali Pawar, Thijs van Lankveld","ds","ds-parallel",Christmas special test workshop,2021-12-24-dc-socsci-R-nlesc,R
+venue;address;country;latitude;longitude;humandate;humantime;startdate;enddate;instructor;helper;carpentry;curriculum;title;slug;flavor
+Online;online;NA;NA;NA;March 11 - 14, 2024;9:00 - 13:00 CET;2024-03-10T23:00:00Z;2024-03-13T23:00:00Z;Candace Moore, Giulia Crocioni, Jaro Camphuijsen;Djura Smits;dc;dc-image-processing;Image Processing with Python;2024-03-11-dc-image-processing;NA
