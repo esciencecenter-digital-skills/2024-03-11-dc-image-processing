@@ -117,7 +117,7 @@ displayed if the 'eventbrite' field in the header is not set.
   src="https://www.eventbrite.com/tickets-external?eid={{eventbrite}}&ref=etckt"
   frameborder="0"
   width="100%"
-  height="280px"
+  height="400px"
   scrolling="auto">
 </iframe>
 {% endif %}
@@ -131,11 +131,16 @@ INTRODUCTION
 Edit the general explanatory paragraph below if you want to change
 the pitch.
 {% endcomment %}
-
-
+{% if info.carpentry == "swc" %}
+{% include swc/intro.html %}
+{% elsif info.carpentry == "dc" %}
+{% include dc/intro.html %}
+{% elsif info.carpentry == "lc" %}
+{% include lc/intro.html %}
+{% elsif info.carpentry == "ds" %}
 {% include ds/intro.md %}
 {% remote_include {{lesson_meta}}/description.md %}
-
+{% endif %}
 
 {% comment %}
 AUDIENCE
@@ -143,12 +148,18 @@ AUDIENCE
 Explain who your audience is.  (In particular, tell readers if the
 workshop is only open to people from a particular institution.
 {% endcomment %}
-
+{% if info.carpentry == "swc" %}
+{% include swc/who.html %}
+{% elsif info.carpentry == "dc" %}
+{% include dc/who.html %}
+{% elsif info.carpentry == "lc" %}
+{% include lc/who.html %}
+{% elsif info.carpentry == "ds" %}
 <div style="display: flex"><div>
      <strong>Who:&nbsp;</strong>
      </div>
      <div markdown=1>{% remote_include {{lesson_meta}}/who.md %}</div></div>
-
+{% endif %}
 
 {% comment %}
 LOCATION
@@ -232,9 +243,12 @@ special instructions.
   <strong>Accessibility:</strong>
 {% if online == "false" %}
   We are committed to making this workshop
-  accessible to everybody. Unfortunately, the elevator in our building is broken and it will take until July to fix it.
-  Please contact us at training@esciencecenter.nl if you cannot use the staircase.
+  accessible to everybody. The workshop organizers have checked that:
 </p>
+<ul>
+  <li>The room is wheelchair / scooter accessible.</li>
+  <li>Accessible restrooms are available.</li>
+</ul>
 <p>
   Materials will be provided in advance of the workshop and
   large-print handouts are available if needed by notifying the
@@ -314,7 +328,7 @@ Participants are expected to follow these guidelines:
   <li>Show courtesy and respect towards other community members</li>
 </ul>
 </p>
-
+{% else %}
 <p>
 Everyone who participates in Carpentries activities is required to conform to the <a href="https://docs.carpentries.org/topic_folders/policies/code-of-conduct.html">Code of Conduct</a>. This document also outlines how to report an incident if needed.
 </p>
@@ -445,6 +459,10 @@ during the workshop.
 {% if info.carpentry == "swc" %}
 {% include swc/setup.html %}
 {% elsif info.carpentry == "dc" %}
+{% include dc/setup.html %}
+{% elsif info.carpentry == "lc" %}
+{% include lc/setup.html %}
+{% elsif info.carpentry == "ds" %}
 {% capture content %}
 {% remote_include {{lesson_meta}}/setup.md %}
 {% endcapture %}
@@ -456,8 +474,6 @@ during the workshop.
 {% else %}
   {{ content }}
 {% endif %}
-{% elsif info.carpentry == "lc" %}
-{% include lc/setup.html %}
 {% elsif info.carpentry == "pilot" %}
 Please check the "Setup" page of
 [the lesson site]({{ site.lesson_site }}) for instructions to follow
