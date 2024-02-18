@@ -86,15 +86,3 @@ Geospatial workshops
 
 
 
-
-{% comment %}
-Image Processing workshops
-{% endcomment %}
-
-{% if info.curriculum == "dc-image-processing" %}
-<p>The setup instructions for our Data Carpentry Image Processing workshops can be found at <a href="https://github.com/esciencecenter-digital-skills/image-processing/blob/main/setup.md">the image processing workshop overview site</a></p>.
-<p> Alternatively you can create an environment without conda with the libraries in the <a href="https://github.com/esciencecenter-digital-skills/image-processing/blob/main/environment.yml">environment file</a></p>
-
-{% else %}
-{% include warning-curriculum.html %}
-{% endif %}
