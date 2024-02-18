@@ -381,7 +381,8 @@ of code below the Schedule `<h2>` header below with
 {% endif %}
 
 <h2 id="schedule">Schedule</h2>
-
+{{ info | jsonify }}
+{{ lesson_meta | jsonify }}
 {% if info.carpentry == "swc" %}
 {% include swc/schedule.html %}
 {% elsif info.carpentry == "dc" %}
