@@ -6,7 +6,7 @@ Astronomy workshops
 {% endcomment %}
 {% assign info = site.data.data[0] %}
 
-{% if info.curriculum == "dc-astronomy" %}
+{% if info.curriculum == "dc-astronomy" %} 
 
 <p>
   The setup instructions for the Data Carpentry Astronomy workshops
@@ -85,7 +85,7 @@ Geospatial workshops
 Image Processing workshops
 {% endcomment %}
 
-{% elsif info.curriculum == "dc-image-processing" %}
+{% if info.curriculum == "dc-image-processing" %}
 <p>The setup instructions for our Data Carpentry Image Processing workshops can be found at <a href="https://github.com/esciencecenter-digital-skills/image-processing">the workshop overview site</a></p>.
 
 {% else %}
