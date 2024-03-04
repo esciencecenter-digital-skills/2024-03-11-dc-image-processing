@@ -1,0 +1,563 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+
+    <meta name="slug" content="2024-03-11-dc-image-processing" />
+    <meta name="startdate" content="2024-03-10T23:00:00Z" />
+    <meta name="enddate" content="2024-03-13T23:00:00Z" />
+    <meta name="humandate" content="March 11 - 14, 2024" />
+    <meta name="country" content="NA" />
+    <meta name="venue" content="Online (online)" />
+    <meta name="address" content="online" />
+    <meta name="latlng" content="NA,NA" />
+    <meta name="language" content="" />
+    <meta name="eventbrite" content="" />
+    <meta name="instructor" content="Candace Moore, Giulia Crocioni, Jaro Camphuijsen" />
+    <meta name="helper" content="Thijs Vroegh" />
+    <meta name="contact" content="training@esciencecenter.nl" />
+    <meta name="carpentry" content="dc" />
+
+    <!-- meta "search-domain" used for google site search function google_search() -->
+    <meta name="search-domain" value="">
+
+    
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="last-modified" content="2024-03-04 09:23:22 +0000">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css" />
+
+    <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/lesson.css" />
+
+    
+
+
+
+
+
+    <!-- Favicons for everyone -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="./assets/favicons/dc/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="./assets/favicons/dc/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./assets/favicons/dc/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="./assets/favicons/dc/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="./assets/favicons/dc/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="./assets/favicons/dc/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="./assets/favicons/dc/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="./assets/favicons/dc/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="./assets/favicons/dc/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="./assets/favicons/dc/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="./assets/favicons/dc/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="./assets/favicons/dc/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="./assets/favicons/dc/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Data Carpentry - Image Processing with Python"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="./assets/favicons/dc/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="./assets/favicons/dc/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="./assets/favicons/dc/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="./assets/favicons/dc/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="./assets/favicons/dc/mstile-310x310.png" />
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+    <title>Online: March 11 - 14, 2024</title>
+  </head>
+  <body>
+    <div class="container">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      
+      <a href="https://www.esciencecenter.nl/" class="pull-left">
+        <img class="navbar-logo" src="./assets/img/netherlands-escience-center-logo-RGB.svg" alt="The Netherlands eScience Center logo" />
+      </a>
+      
+      <a href="https://datacarpentry.org" class="pull-left">
+        <img class="navbar-logo" src="./assets/img/dc-icon-black.svg" alt="Data Carpentry logo" />
+      </a>
+      
+
+      
+      <a class="navbar-brand" href="./">Home</a>
+
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+	
+        
+        <li><a href="./CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+        
+
+        
+
+	
+	
+
+	
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+      
+
+
+
+
+
+
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      
+      <h1>Image Processing with Python</h1>
+      
+      <h2>Online</h2>
+      <div class="row">
+        <div class="col-md-6">
+          
+          <p>Online</p>
+          
+          <p>March 11 - 14, 2024</p>
+          <p>9:00 - 13:00 CET</p>
+        </div>
+        <div class="col-md-6">
+          <p>
+          <strong>Instructors:</strong>
+          
+          Candace Moore, Giulia Crocioni, Jaro Camphuijsen
+          
+          </p>
+          
+          <p>
+          <strong>Helpers:</strong>
+          Thijs Vroegh
+          </p>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<p><strong>Some adblockers block the registration window. If you do not see the
+  registration box below, please check your adblocker settings.</strong></p>
+<iframe src="https://www.eventbrite.com/tickets-external?eid=765247565067&amp;ref=etckt" frameborder="0" width="100%" height="400px" scrolling="auto">
+</iframe>
+
+<h2 id="general">General Information</h2>
+
+<p>
+  <a href="https://datacarpentry.org">Data Carpentry</a> develops and teaches workshops on the fundamental data skills needed to conduct
+  research. Its target audience is researchers who have little to no prior computational experience, 
+  and its lessons are domain specific, building on learners' existing knowledge to enable them to quickly 
+  apply skills learned to their own research.
+  Participants will be encouraged to help one another
+  and to apply what they have learned to their own research problems.
+</p>
+<p align="center">
+  <em>
+    For more information on what we teach and why,
+    please see our paper
+    "<a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005510">Good Enough Practices for Scientific Computing</a>".
+  </em>
+</p>
+
+<p id="who">
+  <strong>Who:</strong>
+  The course is aimed at graduate students and other researchers.
+  <strong>
+    You don't need to have any previous knowledge of the tools
+    that will be presented at the workshop.
+  </strong>
+</p>
+
+<p id="where">
+  <strong>Where:</strong> This training will take place online.
+  The instructors will provide you with the information you will need to connect to this meeting.
+</p>
+
+<p id="when">
+  <strong>When:</strong>
+  
+    March 11 - 14, 2024, 9:00 - 13:00 CET.
+  
+</p>
+
+<p id="requirements">
+  <strong>Requirements:</strong>
+  
+    Participants must have access to a computer with a
+    Mac, Linux, or Windows operating system (not a tablet, Chromebook, etc.) that they have administrative privileges on.
+  
+  They should have a few specific software packages installed (listed <a href="#setup">below</a>).
+</p>
+
+<p id="accessibility">
+  <strong>Accessibility:</strong>
+
+  We are dedicated to providing a positive and accessible learning environment for all. Please
+  notify the instructors in advance of the workshop if you require any accommodations or if there is
+  anything we can do to make this workshop more accessible to you.
+</p>
+
+<p id="contact">
+  <strong>Contact:</strong>
+  Please email
+  
+  
+  
+  or
+  
+  <a href="mailto:training@esciencecenter.nl">training@esciencecenter.nl</a>
+  
+  
+  for more information.
+</p>
+
+<hr />
+
+<h2 id="code-of-conduct">Code of Conduct</h2>
+
+<p>
+Everyone who participates in Carpentries activities is required to conform to the <a href="https://docs.carpentries.org/topic_folders/policies/code-of-conduct.html">Code of Conduct</a>. This document also outlines how to report an incident if needed.
+</p>
+
+<p class="text-center">
+  <a href="https://goo.gl/forms/KoUfO53Za3apOuOK2">
+    <button type="button" class="btn btn-info">Report a Code of Conduct Incident</button>
+  </a>
+</p>
+<hr />
+
+<h2 id="syllabus">Syllabus</h2>
+<ul>
+  <li>Introduction to images : Digital Image Basics</li>
+  <li>Working with skimage:	How can the skimage Python computer vision library be used to work with images?</li>
+  <li>Drawing and Bitwise Operations</li>
+  <li>Creating Histograms: 	How can we create grayscale and color histograms to understand the distribution of values in an image?</li>
+  <li>Blurring Images: Intro to filtering and blurring</li>
+  <li>Thresholding: 	How can we use thresholding to produce a binary image?</li>
+  <li>Connected Component Analysis:	How to extract separate objects from an image and describe these objects quantitatively.</li>
+  <li>Capstone Challenge: solving a real world microscopy problem</li>
+  <li>Bonus session: Preparing images for machine learning (affines, other transformations and more)</li>
+</ul>
+
+<h2 id="schedule">Schedule</h2>
+
+<p>This workshop is scheduled on four separate concurrent mornings. This allows you to work on
+your code in between the sessions, implementing the lessons you learned
+during our meetings together. Please schedule dedicated work time in your
+calendar, so you can take full advantage of the workshop.</p>
+
+<div class="row">
+  <div class="col-md-6">
+    <h3>Day 1. </h3>
+    <table class="table table-striped">
+      <tr> <td>9:00</td>  <td>Welcome and Introduction </td> </tr>
+      <tr> <td>9:20</td>  <td>Image Basics</td></tr>
+      <tr> <td>9:40</td>  <td>Working with the skimage library </td> </tr>
+      <tr> <td>10:30</td>  <td>Coffee break</td> </tr>
+      <tr> <td>10:40</td>  <td>Drawing + </td> </tr>
+      <tr> <td>11:40</td>  <td>Bitwise Operations </td> </tr>
+      <tr> <td>12:30</td>  <td>Wrap up</td> </tr>
+      <tr> <td>12:40</td>  <td>Feedback collection</td> </tr>
+      <tr> <td>13:00</td>  <td>END day 1</td> </tr>
+    </table>
+  </div>
+
+
+<div class="row">
+  <div class="col-md-6">
+    <h3>Day 2. </h3>
+    <table class="table table-striped">
+      <tr> <td>9:00</td>  <td>Welcome back  </td> </tr>
+      <tr> <td>9:00</td>  <td>Welcome back + questions</td> </tr>
+      <tr> <td>9:15</td>  <td>Histograms </td></tr>
+      <tr> <td>10:30</td>  <td>Blurring Images</td> </tr>
+      <tr> <td>11:30</td>  <td>Thresholding Images </td> </tr>
+      <tr> <td>11:30</td>  <td>Wrap up and summary </td> </tr>
+      <tr> <td>11:40</td>  <td>Feedback collection</td> </tr>
+      <tr> <td>12:00</td>  <td>Optional extra tutoring </td> </tr>
+      <tr> <td>13:00</td>  <td>END day 2</td> </tr>
+    </table>
+  </div>
+ 
+  
+<div class="row">
+  <div class="col-md-6">
+    <h3>Day 3. </h3>
+    <table class="table table-striped">
+      <tr> <td>9:00</td>  <td>Welcome back  </td> </tr>
+      <tr> <td>09:15</td>  <td>Thresholding Images II</td> </tr>
+      <tr> <td>10:15</td>  <td>Connected Component Analysis </td> </tr>
+      <tr> <td>12:20</td>  <td>Optional Challenge Introduction </td> </tr>
+      <tr> <td>12:30</td>  <td>Feedback collection</td> </tr>
+      <tr> <td>13:00</td>  <td>END day 3</td> </tr>
+    </table>
+  </div>
+
+
+
+  <div class="row">
+  <div class="col-md-6">
+    <h3>Day 4. </h3>
+    <table class="table table-striped">
+      <tr> <td>9:00</td>  <td>Welcome back  </td> </tr>
+      <tr> <td>9:15</td>  <td>Capstone Challenge </td> </tr>
+      <tr> <td>11:30</td>  <td>Bonus lecture: transformations, affine </td> </tr>
+      <tr> <td>12:30</td>  <td>Feedback collection</td> </tr>
+      <tr> <td>13:00</td>  <td>END day 4</td> </tr>
+    </table>
+  </div>
+  
+<p><b>All times in the schedule are in the CET timezone (Amsterdam time).</b></p>
+
+
+
+
+
+
+<hr />
+
+
+
+
+<h2 id="setup">Setup</h2>
+
+<p>
+  To participate in
+  
+  a Data Carpentry
+  
+  workshop,
+  you will need access to software as described below.
+  In addition, you will need an up-to-date web browser.
+</p>
+<p>
+  We maintain a list of common issues that occur during installation as a reference for instructors
+  that may be useful on the
+  <a href="https://github.com/swcarpentry/workshop-template/wiki/Configuration-Problems-and-Solutions">Configuration Problems and Solutions wiki page</a>.
+</p>
+
+
+
+<h3 id="software-setup">Software setup</h3>
+
+
+
+
+
+
+
+<p>The setup for this workshop requires you to have both a proper environment created and the data for the workshop downloaded. The easiest way to do this is to download the workshop repository which includes both <a href="https://github.com/esciencecenter-digital-skills/image-processing/tree/main/data">the data</a> and setup instructions.</p>
+<p>The setup instructions for our Data Carpentry Image Processing workshops can be found at <a href="https://github.com/esciencecenter-digital-skills/image-processing/blob/main/setup.md">the image processing workshop overview site</a></p>.
+<p> If you do not wish to use conda you can create an environment without conda with the libraries in the <a href="https://github.com/esciencecenter-digital-skills/image-processing/blob/main/environment.yml">environment file</a></p>
+
+
+
+
+
+
+
+
+
+
+
+<h3 id="videoconferencing">Install the videoconferencing client</h3>
+
+
+<p>
+  If you haven't used Zoom before, go to the
+  <a href="https://zoom.us/download">official website</a>
+  to download and install the Zoom client for your computer.
+</p>
+
+
+<h4>Set up your workspace</h4>
+
+<p>
+  Like other Carpentries workshops,
+  you will be learning by "coding along" with the Instructors.
+  To do this, you will need to have both the window for the tool
+  you will be learning about (a terminal, RStudio, your web browser, etc..)
+  and the window for the Zoom video conference client open.
+  In order to see both at once,
+  we recommend using one of the following set up options:
+  <ul>
+    <li><strong>Two monitors:</strong> If you have two monitors,
+      plan to have the tool you are learing up on one monitor and
+      the video conferencing software on the other.</li>
+    <li><strong>Two devices:</strong> If you don't have two monitors,
+      do you have another device (tablet, smartphone) with a medium to large
+      sized screen? If so, try using the smaller device as your video
+      conference connection and your larger device (laptop or desktop)
+      to follow along with the tool you will be learning about.</li>
+    <li><strong>Divide your screen:</strong> If you only have one device
+      and one screen, practice having two windows
+      (the video conference program and one of the tools you will be using
+      at the workshop) open together.
+      How can you best fit both on your screen?
+      Will it work better for you to toggle between them
+      using a keyboard shortcut?
+      Try it out in advance to decide what will work best for you.</li>
+  </ul>
+  This <a href="https://carpentries.org/blog/2020/06/online-workshop-logistics-and_screen-layouts/" target="_blank">blog post</a> includes detailed information on how to set up your screen to follow along during the workshop.
+</p>
+
+
+
+</div></div></div></div>
+
+      
+
+
+<footer>
+  <hr/>
+  <div class="row">
+    <div class="col-md-6" align="left">
+      <h4>
+	Copyright &copy; 2016–2024
+	
+	<a href="https://datacarpentry.org">Data Carpentry</a>
+	
+      </h4>
+    </div>
+    <div class="col-md-6" align="right">
+      <h4>
+        
+	<a href="mailto:team@carpentries.org">Contact The Carpentries</a>
+        
+      </h4>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+
+
+<script src="./assets/js/jquery.min.js"></script>
+<script src="./assets/js/bootstrap.min.js"></script>
+<script src="./assets/js/lesson.js"></script>
+
+<script>
+/* Based on https://stackoverflow.com/a/30894829/1802726 */
+var show_instructions = function() {
+     //set all nav tabs to inactive
+    $('.nav-tabs li').removeClass('active');
+
+    //get all nav tabs matching the os and set to active
+    $('.nav-tabs li a[href*="'+localStorage.os+'"]').closest('li').addClass('active');
+
+    //set all tabs to inactive
+    $('.tab-pane').removeClass('active');
+
+    //get all tabs matching the os and set to active
+    $('.tab-pane[id*="'+localStorage.os+'"]').addClass('active');
+}
+
+if (typeof(Storage) !== "undefined") {
+    if (localStorage.os == "undefined") {
+        localStorage.os = "windows";
+    }
+    show_instructions();
+} else {
+    console.log("No localStorage");
+}
+
+/* Based on https://stackoverflow.com/a/30894829/1802726 */
+$('.nav-tabs li a').click(function(){
+    //get selected os
+    localStorage.os = $(this)[0].dataset.os;
+    show_instructions();
+});
+
+  // detect misssing iframe for Eventbrite
+  $(document).ready(function(){
+      if ($('iframe').height() == 0) {
+          $('iframe').before('<p>Looks like your adblocker blocked the registration window. Please navigate to <a href="https://www.eventbrite.com/tickets-external?eid=&ref=etckt">https://www.eventbrite.com/tickets-external?eid=&ref=etckt</a> to register.</p>');
+      }
+  });
+
+  // hide alerts when site is rendered on carpentries.github.io
+  $(document).ready(function() {
+      if (location.href.startsWith("https://carpentries.github.io/workshop-template/")) {
+          $("div.alert").hide();
+      }
+  });
+
+</script>
+
+  </body>
+</html>
