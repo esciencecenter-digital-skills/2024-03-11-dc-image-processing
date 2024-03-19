@@ -184,17 +184,7 @@ Exercise 1 : (summary) read in image (“data/eight.tif”) then change it (chan
 
 
 Recommended anwsers:
-
-### solution
-
-```python
-five = iio.imread(uri="data/eight.tif")
-five[1,2]= 1.0
-five[3,0]= 1.0
-fig, ax = plt.subplots()
-plt.imshow(five)
-print(five)
-```
+<stripped data>
 
 ### Exercise #2:
 Suppose that we represent colours as triples (r, g, b), where each of r, g, and b is an integer in [0, 255]. What colours are represented by each of these triples? (Try to answer these questions without reading further.)
@@ -221,26 +211,8 @@ Don’t forget to use fig, ax = plt.subplots() so you don’t overwrite the firs
 
 
 ## solution:
-
-```python
-# read in image
-chair = iio.imread(uri="../../data/chair.jpg")
-# resize the image; the third dimension in chair.shape[2]) is the number of colour channels we want to keep unchanged
-new_shape = (chair.shape[0] // 10, chair.shape[1] // 10, chair.shape[2])
-resized_chair = ski.transform.resize(image=chair, output_shape=new_shape)
-resized_chair = ski.util.img_as_ubyte(resized_chair)
-
-# write out image
-iio.imwrite(uri="data/resized_chair.jpg", image=resized_chair)
-
-# display images
-fig, ax = plt.subplots()
-plt.imshow(chair)
-fig, ax = plt.subplots()
-plt.imshow(resized_chair)
-
-```
-
+<stripped data>
+    
 ### Exercise #2
 Remake sodoku image (data/sudoku.png) to be grayer. Your task is to load the image in grayscale format and turn all of the bright pixels in the image to a light gray colour. In other words, mask the bright pixels that have a pixel value greater than, say, 192 and set their value to 192 (the value 192 is chosen here because it corresponds to 75% of the range 0-255 of an 8-bit pixel).
 
@@ -252,26 +224,8 @@ plt.imshow?
 
 
 ## solution:
-
-```
-# load the image file data/sudoku.png as a grayscale image. 
-sudoku = iio.imread(uri="../../data/sudoku.png", mode="L")
-
-# create a copy of the image array to avoid modifying our original image. Also, imageio.v3.imread 
-# sometimes returns a non-writeable image.
-sudoku = sudoku.copy()
-
-# Then set all bright pixel values greater than 192 to 192. This will make the background of the image darker/ gray.
-sudoku_gray_background = np.array(sudoku)
-sudoku_gray_background[sudoku_gray_background > 192] = 192
-
-# display the original and modified images side by side. Note that we have to specify vmin=0 and vmax=255 
-# as the range of the colorscale because it would otherwise automatically adjust to the new range 0-192.
-fig, ax = plt.subplots(ncols=2)
-ax[0].imshow(sudoku, cmap="gray", vmin=0, vmax=255)
-ax[1].imshow(sudoku_gray_background, cmap="gray", vmin=0, vmax=255)
-````
-
+<stripped data>
+    
 ## Histograms
 ### Exercise #1a (Advanced)
 Using a mask for a histogram (15 min)
@@ -286,68 +240,7 @@ Create a new, smaller image focused on the object from the original image, and c
 
 
 ## solution:
-
-```
-# read the image as grayscale from the outset
-plant_seedling = iio.imread(uri="../../data/plant-seedling.jpg", mode="L")
-# convert the image to float dtype with valrange from 0 to 1
-plant_seedling = ski.util.img_as_float(plant_seedling)
-# display the image
-fig, ax = plt.subplots()
-plt.imshow(plant_seedling, cmap="gray")
-```
-
-```
-# create mask here, use np.zeros() and ski.draw.rectangle()
-mask = np.zeros(shape=plant_seedling.shape, dtype="bool")
-rr, cc = ski.draw.rectangle(start=(199, 410), end=(384, 485))
-mask[rr, cc] = True
-# display the mask
-fig, ax = plt.subplots()
-plt.imshow(mask, cmap="gray")
-```
-
-```
-# mask the image and create the new histogram
-histogram, bin_edges = np.histogram(plant_seedling[mask], bins=256, range=(0, 1))
-# configure and draw the histogram figure
-plt.figure()
-plt.title("Grayscale Histogram")
-plt.xlabel("grayscale value")
-plt.ylabel("pixel count")
-plt.xlim([0.0, 1.0])
-plt.plot(bin_edges[0:-1], histogram)
-```
-
-# color histograms
-```
-# read original image, in full color
-plant_seedling = iio.imread(uri="../../data/plant-seedling.jpg")
-
-# display the image
-fig, ax = plt.subplots()
-plt.imshow(plant_seedling)
-```
-
-```
-# tuple to select colors of each channel line
-colors = ("red", "green", "blue")
-
-# create the histogram plot, with three lines, one for
-# each color
-plt.figure()
-plt.xlim([0, 256])
-for channel_id, color in enumerate(colors):
-    histogram, bin_edges = np.histogram(
-        plant_seedling[:, :, channel_id], bins=256, range=(0, 256)
-    )
-    plt.plot(bin_edges[0:-1], histogram, color=color)
-
-plt.title("Color Histogram")
-plt.xlabel("Color value")
-plt.ylabel("Pixel count")
-
-```
+<stripped data>
 ## 🧠 Collaborative Notes
 
 ### Episode 2

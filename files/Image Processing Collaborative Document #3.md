@@ -178,51 +178,12 @@ First, plot the grayscale histogram as in the Creating Histogram episode and exa
 <Stripped data>
 
 
-**Recommended awnser/implementation:**
-```python
-shapes = iio.imread(uri="data/shapes-02.jpg")
-
-fig, ax = plt.subplots()
-ax.imshow(shapes)
-```
-
-```python
-shapes = iio.imread(uri="data/shapes-02.jpg")
-gray_shapes = ski.color.rgb2gray(shapes)
-histogram, bin_edges = np.histogram(gray_shapes, bins=256, range=(0.0, 1.0))
-
-fig, ax = plt.subplots()
-plt.plot(bin_edges[0:-1], histogram)
-plt.title("Graylevel histogram")
-plt.xlabel("gray value")
-plt.ylabel("pixel count")
-plt.xlim(0, 1.0)
-```
-
-So we can see a large spike around 0.3, and a smaller spike around 0.7. The spike near 0.3 represents the darker background, so it seems like a value close to t=0.5 would be a good choice.
 
 #### Exercise 1, continued (10 min)
 
 Next, create a mask to turn the pixels above the threshold `t` on and pixels below the threshold `t` off. Note that unlike the image with a white background we used above, here the peak for the background colour is at a lower gray level than the shapes. Therefore, change the comparison operator less `<` to greater `>` to create the appropriate mask. Then apply the mask to the image and view the thresholded image. If everything works as it should, your output should show only the coloured shapes on a black background.
 
-**Answer:**
-```python
-t = 0.5
-binary_mask = gray_shapes > t
 
-fig, ax = plt.subplots()
-plt.imshow(binary_mask, cmap="gray")
-```
-
-Then
-
-```python
-selection = shapes.copy()
-selection[~binary_mask] = 0
-
-fig, ax = plt.subplots()
-plt.imshow(selection)
-```
 
 #### Exercise 2: ignoring more of the images – brainstorming (10 min)
 
@@ -258,36 +219,7 @@ This is one of the images you will be working with in the morphometric challenge
 2. Create a binary mask that leaves the pixels in the bacteria colonies “on” while turning the rest of the pixels in the image “off”.
 
 **Potential answer:**
-```python
-# load, blur and plot the image
-bacteria = iio.imread(uri="data/colonies-01.tif")
-gray_image = ski.color.rgb2gray(bacteria)
-blurred_image = ski.filters.gaussian(gray_image, sigma=1.0)
-
-fig, ax = plt.subplots()
-ax.imshow(blurred_image)
-```
-
-
-```python
-# plot the histogram
-histogram, bin_edges = np.histogram(blurred_image, bins=256, range=(0.0,1.0))
-fig, ax = plt.subplots()
-ax.plot(bin_edges[0:-1], histogram)
-ax.set_title("Graylevel histogram")
-ax.set_xlabel("gray value")
-ax.set_ylabel("pixel count")
-ax.set_xlim(0, 1.0)
-```
-
-```python
-# define threshold and mask out the background, then plot the background
-t = 0.2
-binary_mask = blurred_image < t
-
-fig, ax = plt.subplots()
-ax.imshow(binary_mask, cmap="gray")
-```
+    <strippd data>
 
 ### Connected component analysis
 
@@ -303,26 +235,7 @@ Put your green sign online when done.
 
 #### Solution:
 
-As you might have guessed, the return value `count` already contains the number of objects found in the image. So it can simply be printed with
-
-```python
-print("Found", count, "objects in the image.")
-```
-
-But there is also a way to obtain the number of found objects from the labeled image itself. Recall that all pixels that belong to a single object are assigned the same integer value. The connected component algorithm produces consecutive numbers. The background gets the value `0`, the first object gets the value `1`, the second object the value `2`, and so on. This means that by finding the object with the maximum value, we also know how many objects there are in the image. We can thus use the `np.max` function from NumPy to find the maximum value that equals the number of found objects:
-
-```python
-num_objects = np.max(labeled_image)
-print("Found", num_objects, "objects in the image.")
-```
-
-Invoking the function with `sigma=2.0`, and `threshold=0.9`, both methods will print
-
-```
-Found 11 objects in the image.
-```
-
-Lowering the threshold will result in fewer objects. The higher the threshold is set, the more objects are found. More and more background noise gets picked up as objects. Larger sigmas produce binary masks with less noise and hence a smaller number of objects. Setting sigma too high bears the danger of merging objects.
+<stripped data>
 
 #### Exercise 2: Plot a histogram of the object area distribution
 
@@ -336,20 +249,11 @@ What does the histogram tell you about the objects?
 #### Solution:
 
 The histogram can be plotted with
-
-```python
-fig, ax = plt.subplots()
-ax.hist(object_areas)
-ax.set_xlabel("Area (pixels)")
-ax.set_ylabel("Number of objects");
-```
+<stripped data>
 
 ![](https://codimd.carpentries.org/uploads/upload_dcb7b7671efb2b44514fcae5f8383e0e.png)
 
 
-The histogram shows the number of objects (vertical axis) whose area is within a certain range (horizontal axis). The height of the bars in the histogram indicates the prevalence of objects with a certain area. The whole histogram tells us about the distribution of object sizes in the image. It is often possible to identify gaps between groups of bars (or peaks if we draw the histogram as a continuous curve) that tell us about certain groups in the image.
-
-In this example, we can see that there are four small objects that contain less than 50000 pixels. Then there is a group of four (1+1+2) objects in the range between 200000 and 400000, and three objects with a size around 500000. For our object count, we might want to disregard the small objects as artifacts, i.e, we want to ignore the leftmost bar of the histogram. We could use a threshold of 50000 as the minimum area to count. In fact, the `object_areas` list already tells us that there are fewer than 200 pixels in these objects. Therefore, it is reasonable to require a minimum area of at least 200 pixels for a detected object. In practice, finding the “right” threshold can be tricky and usually involves an educated guess based on domain knowledge.
 
 #### Exercise 3: Filter objects by area
 
@@ -357,66 +261,7 @@ Now we would like to use a minimum area criterion to obtain a more accurate coun
 
 Find a way to calculate the number of objects by only counting objects above a certain area.
 
-#### Complete solution (with explaination): 
-
-One way to count only objects above a certain area is to first create a list of those objects, and then take the length of that list as the object count. This can be done as follows:
-
-```python
-min_area = 200
-large_objects = []
-for objf in object_features:
-    if objf["area"] > min_area:
-        large_objects.append(objf["label"])
-print("Found", len(large_objects), "objects!")
-```
-
-Another option is to use NumPy arrays to create the list of large objects. We first create an array `object_areas` containing the object areas, and an array `object_labels` containing the object labels. The labels of the objects are also returned by `ski.measure.regionprops`. We have already seen that we can create boolean arrays using comparison operators. Here we can use `object_areas > min_area` to produce an array that has the same dimension as `object_labels`. It can then used to select the labels of objects whose area is greater than `min_area` by indexing:
-
-```python
-object_areas = np.array([objf["area"] for objf in object_features])
-object_labels = np.array([objf["label"] for objf in object_features])
-large_objects = object_labels[object_areas > min_area]
-print("Found", len(large_objects), "objects!")
-```
-
-The advantage of using NumPy arrays is that `for` loops and `if` statements in Python can be slow, and in practice the first approach may not be feasible if the image contains a large number of objects. In that case, NumPy array functions turn out to be very useful because they are much faster.
-
-In this example, we can also use the `np.count_nonzero` function that we have seen earlier together with the > operator to count the objects whose area is above `min_area`.
-
-```python
-n = np.count_nonzero(object_areas > min_area)
-print("Found", n, "objects!")
-```
-
-For all three alternatives, the output is the same and gives the expected count of 7 objects.
-
-#### Your solutions:
-
-##### Participant_1: 
-```python
-labeled_image, count = connected_components(filepath="data/shapes-01.jpg", sigma=2.0, t=0.9, connectivity=2)
-
-length = len(object_areas)
-for x in range(length):
-    area = object_areas[x]
-    if area < 1000:
-        count = count -1
-print(count)
-```
-
-##### Participant_2:
-```python
-thres = 10000
-checking = [objf["area"] for objf in object_features if objf["area"] > thres]
-counting = len(checking)
-print("found", counting, "objects")
-```
-
-#### Participant_3:
-```python
-object_areas = np.array(object_areas)
-count = len(object_areas[object_areas>1e+5])
-```
+#### Complete solution (stripped data (removed))
 
 ## 🧠 Collaborative Notes
 

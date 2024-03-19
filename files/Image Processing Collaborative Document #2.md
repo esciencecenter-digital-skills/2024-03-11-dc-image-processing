@@ -167,22 +167,13 @@ canvas = np.zeros(shape=(600, 800, 3), dtype="uint8")
 ```
 Use the canvas, and add some art, modern art probably :-) using lines, polygons, circles, rectangles, whatever you can find in the `ski.draw` modulew. 
 
-**Your answers:** 
+**Art:** 
 ![](https://codimd.carpentries.org/uploads/upload_33d089b42bfe790bc71ca9adfc87480e.png)
 
 
 **Recommended answers:**
-```python
-# draw a blue circle with centre (200, 300) in (ry, cx) coordinates, and radius 100
-rr, cc = ski.draw.disk(center=(200, 300), radius=100, shape=canvas.shape[0:2])
-canvas[rr, cc] = (0, 0, 255)
+<stripped data>
 
-# draw a green line from (400, 200) to (500, 700) in (ry, cx) coordinates
-rr, cc = ski.draw.line(r0=400, c0=200, r1=500, c1=700)
-canvas[rr, cc] = (0, 255, 0)
-
-# and so forth and then display
-```
 #### Exercise #2 
 load an image of the wellplate, as below
 ```python
@@ -196,43 +187,12 @@ plt.imshow(wellplate)
 ```
 Now you can use data/centers.txt in the data folder to understand where the centers of the wells are. Each well has a radius of about 16 pixels. Mask to show only the wells. 
 
-**Your answers(if you want to show):**
+**Your answers(<stripped data>):**
 
-```f = np.loadtxt("../../data/centers.txt")
-mask = np.ones(shape = wellplate.shape[0:2], dtype = 'bool')
-for ii in np.arange(f.shape[0]):
-    rr, cc = ski.draw.disk(center=(f[ii,1],f[ii,0]) , radius=16, shape=wellplate.shape[0:2])
-    mask[rr, cc] = False
-wellplate[mask]=0
-fig, ax = plt.subplots()
-plt.imshow(wellplate)
-```
 
 
 **An example answer:**
-```python
-# read in original image
-wellplate = iio.imread(uri="data/wellplate-01.jpg")
-wellplate = np.array(wellplate)
-# create the mask image
-mask = np.ones(shape=wellplate.shape[0:2], dtype="bool")
-# open and iterate through the centers file
-with open("data/centers.txt", "r") as center_file:
-    for line in center_file:
-        # ... getting the coordinates of each well...
-        coordinates = line.split()
-        cx = int(coordinates[0])
-        ry = int(coordinates[1])
-        # ... and drawing a circle on the mask
-        rr, cc = ski.draw.disk(center=(ry, cx), radius=16, shape=wellplate.shape[0:2])
-        mask[rr, cc] = False
-# apply the mask
-wellplate[mask] = 0
-# display the result
-fig, ax = plt.subplots()
-plt.imshow(wellplate)
-    
-```
+<stripped data>
 
 #### Exercise 2 (bonus add-on)
 
@@ -240,46 +200,7 @@ If you spent some time looking at the contents of the data/centers.txt file from
 
 
 **Example awnser:**
-
-```python
-# read in original image
-wellplate = iio.imread(uri="data/wellplate-01.jpg")
-wellplate = np.array(wellplate)
-
-# create the mask image
-mask = np.ones(shape=wellplate.shape[0:2], dtype="bool")
-
-# upper left well coordinates
-cx0 = 91
-ry0 = 108
-
-# spaces between wells
-deltaCX = 70
-deltaRY = 72
-
-cx = cx0
-ry = ry0
-
-# iterate each row and column
-for row in range(12):
-    # reset cx to leftmost well in the row
-    cx = cx0
-    for col in range(8):
-
-        # ... and drawing a circle on the mask
-        rr, cc = ski.draw.disk(center=(ry, cx), radius=16, shape=wellplate.shape[0:2])
-        mask[rr, cc] = False
-        cx += deltaCX
-    # after one complete row, move to next row
-    ry += deltaRY
-
-# apply the mask
-wellplate[mask] = 0
-
-# display the result
-fig, ax = plt.subplots()
-plt.imshow(wellplate)
-```
+<stripped data>
 
 ### Histograms, part 2 
 #### Exercise 2: Colour histogram with a mask (25 min)
@@ -306,37 +227,7 @@ Your masked image should look like this:
 ![](https://datacarpentry.org/image-processing/fig/wellplate-02-histogram.png)
 
 **Example answer:**
-```python
-# create a circular mask to select the 7th well in row 1
-mask = np.zeros(shape=wellplate.shape[0:2], dtype="bool")
-circle = ski.draw.disk(center=(240,1053), radius=49, shape=wellplate.shape[0:2])
-mask[circle] = 1
-
-# mask
-masked_img = np.array(wellplate)
-masked_img[~mask] = 0
-
-# display
-fig, ax = plt.subplots()
-plt.imshow(masked_img)
-
-# start dealing with colors
-colors = ("red", "green", "blue")
-
-# create the histogram plot, with three lines, 
-plt.figure()
-plt.xlim([0,256])
-
-for (channel_id, color) in enumerate(colors):
-    histogram, bin_edges = np.histogram(
-        wellplate[:,:,channel_id][mask], bins=256, range=(0,256)
-    )
-    plt.plot(histogram, color=color)
-    
-plt.xlabel("color value")
-plt.ylabel("pixel count")
-
-```
+<stripped data>
 
 ### Blurring 
 

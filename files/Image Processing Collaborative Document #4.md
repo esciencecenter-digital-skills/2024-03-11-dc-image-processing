@@ -212,32 +212,6 @@ We might also want to exclude (mask) the small objects when plotting the labeled
 Enhance the connected_components function such that it automatically removes objects that are below a certain area that is passed to the function as an optional parameter.
 
 #### Your answers:
-```python
-def connected_components(filepath, sigma=1.0, t=0.5, connectivity=2,min_area=1000): 
-    # be careful with defining default values 
-    
-    #load the image 
-    image=iio.imread(filepath)
-    #convert the image to grayscale 
-    gray_image=ski.color.rgb2gray(image)
-    # denoise the image with Gaussian filter 
-    blurred_image=ski.filters.gaussian(gray_image, sigma=sigma)
-    
-    #mask the image according to the treshold 
-    binary_mask= blurred_image < t
-    
-    #connected components analysis 
-    labeled_image,count=ski.measure.label(binary_mask, connectivity=connectivity,return_num=True)
-    
-    object_features=ski.measure.regionprops(labeled_image)
-    object_areas=[objf['area'] for objf in object_features]
-    
-    edited_image=ski.morphology.remove_small_objects(labeled_image, 1000)
-   
-    
-    
-    return labeled_image, edited_image, count 
-```
 
 
 ### Capstone challenge exercise
